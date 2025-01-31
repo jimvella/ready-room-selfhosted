@@ -324,5 +324,6 @@ Add-Type -TypeDefinition $code
 
 [Util]::SendInputToWindow("DCS Updater", "`n")
 
-
+cd 'Z:\DCS World Server\bin\'
+.\DCS_updater.exe install CAUCASUS_terrain
 ```
