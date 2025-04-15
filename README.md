@@ -115,7 +115,32 @@ Review the parameters section of the powershell script above and update as requi
 
 ### AWS EC2 Step by step
 
-AWS console EC2 service, click 'Launch instance'.
-![Launch instance](images/01_launch_instance.png)
+1. AWS console EC2 service, click 'Launch instance'.
+   ![Launch instance](images/01_launch_instance.png)
+
+2. Select 'Windows' from the Quick start AMIs.
+   ![Windows AMI](images/02_select_windows.png)
+
+3. Select an instance type. The instance needs to have an SSD volume large enough to accomodate the DCS Server installation. [i3en.large](https://aws.amazon.com/ec2/instance-types/i3en/) is probably the least expensive instance with a large enough volume. [z1d.xlarge](https://aws.amazon.com/ec2/instance-types/z1d/) is probably the best value option for high performance compute. See https://aws.amazon.com/ec2/pricing/on-demand/
+   ![Instance type](images/03_select_instance_type.png)
+
+4. Select a key pair login. This isn't actually required since the windows admin password will be set by the user data script, but if it's not set the EC2 wizard will prompt you again to confirm a key pair is not required.
+
+5. Configure Network settings. This is most conveniently done by having an existing security group already configured to select. The security group needs to be configured to allow inbound access on the DCS server ports (10308 TCP and UDP), as well as any other services required - e.g. rdp / remote desktop (3389 TCP).
+
+6. (Optional) Configure Purchasing option 'Spot instances'. This in the expanded 'Advanced details' section. A [spot instance](https://aws.amazon.com/ec2/spot/) is potentially cheaper at the risk of being terminated early.
+
+7. Configure the User data script. This in the expanded 'Advanced details' section. Copy and pase the script in the above section with any parameter changes including the enclosing `<powershell>` tags into the user data text area.
+   ![User data](images/04_userdata.png)
+
+8. Launch instance
+
+9. Remember to Terminate the instance when it's no longer required to avoid unecessary expense.
 
 ## Notes and future work
+
+- The install script could be extended to include extra services such as SRS, Tacview, Olympus, Mods, etc.
+
+- The gui automation aspect of the script could be made more resilient.
+
+- Operating system performance optimisatons, e.g. configuring windows temporary storage to use SSD storage over network storage might improve the performance of DCS Server.

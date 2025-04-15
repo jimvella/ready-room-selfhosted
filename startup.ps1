@@ -18,6 +18,9 @@ $webClient.DownloadFile("https://aka.ms/vs/17/release/vc_redist.x86.exe", "Z:\vc
 # Headless install mode
 Z:\vc_redist.x86.exe /q
 
+# Disable firewall - simplest way to enable connectivity for DCS and associated services
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
 # Download and install DCS Dedicated Server
 $Html = $webClient.DownloadString('https://www.digitalcombatsimulator.com/en/downloads/world/server/')
 $ExeRelLink = [Regex]::Matches($html, '<a href="(.*?)"') | % {$_.Groups[1].Value} | ? {$_.StartsWith("/upload")}
