@@ -121,7 +121,7 @@ Review the parameters section of the powershell script above and update as requi
 2. Select 'Windows' from the Quick start AMIs.
    ![Windows AMI](images/02_select_windows.png)
 
-3. Select an instance type. The instance needs to have an SSD volume large enough to accomodate the DCS Server installation. [i3en.large](https://aws.amazon.com/ec2/instance-types/i3en/) is probably the least expensive instance with a large enough volume. [z1d.xlarge](https://aws.amazon.com/ec2/instance-types/z1d/) is probably the best value option for high performance compute. See https://aws.amazon.com/ec2/pricing/on-demand/
+3. Select an instance type. The instance needs to have an SSD volume large enough to accomodate the DCS Server installation. [i3en.large](https://aws.amazon.com/ec2/instance-types/i3en/) is probably the least expensive instance with a large enough SSD volume. [z1d.xlarge](https://aws.amazon.com/ec2/instance-types/z1d/) is probably the best value option for high performance compute. See https://aws.amazon.com/ec2/pricing/on-demand/
    ![Instance type](images/03_select_instance_type.png)
 
 4. Select a key pair login. This isn't actually required since the windows admin password will be set by the user data script, but if it's not set the EC2 wizard will prompt you again to confirm a key pair is not required.
