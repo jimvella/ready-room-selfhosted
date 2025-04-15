@@ -1,3 +1,7 @@
+# The main script for unattended install of DCS Server
+# Intended to be downloaded by a EC2 User data script from github to avoid going over the
+# size limit imposed by AWS.
+
 # Source config
 . C:\config.ps1
 
@@ -23,7 +27,6 @@ $webClient.DownloadFile($DownloadLink, "Z:\DCS_World_Server_modular.exe")
 Write-Host "Starting DCS installer"
 Z:\DCS_World_Server_modular.exe
 
-Write-Host "Starting DCS installer"
 $webClient = [System.Net.WebClient]::new()
 $webClient.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/6f043b39-b3d2-4f0a-92bd-99408739c98d/fa16213ea5d6464fa9138142ea1a3446/dotnet-sdk-8.0.407-win-x64.exe", "Z:\dotnet-sdk-8.0.407-win-x64.exe")
 
