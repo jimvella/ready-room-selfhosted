@@ -151,11 +151,12 @@ Start-Sleep -Milliseconds 500;
 
 (Poll { (Get-Process DCS_World_Server_modular.tmp).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "Install" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
 
-$timeout = [System.TimeSpan]::FromMilliseconds(1000 * 60)
+# Update timeout to be more than 1 minute since the DCS install will certainly take longer then one minute
+$timeout = [System.TimeSpan]::FromMilliseconds(1000 * 60 * 70)
 
 (Poll { (Get-Process DCS_World_Server_modular.tmp).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "Finish" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
 
-(Poll { (Get-Process DCS_Updater).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "Proceed" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
+(Poll { (Get-Process DCS_Updater).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "OK" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
 
 $interval = [System.TimeSpan]::FromMilliseconds(5000)
 # 120min timeout
