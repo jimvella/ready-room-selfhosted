@@ -155,8 +155,6 @@ $timeout = [System.TimeSpan]::FromMilliseconds(1000 * 60)
 
 (Poll { (Get-Process DCS_World_Server_modular.tmp).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "Finish" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
 
-(Poll { (Get-Process DCS_Updater).Id | ForEach-Object { [FlaUI.Core.Application]::Attach($_) } | ForEach-Object { $_.GetAllTopLevelWindows( $automation ) } | ForEach-Object { $_.SetForeground(); $_ } | ForEach-Object { Nested-Children($_) } | Where-Object { $_.Name -eq "Proceed" } } { param($i) $i.Count -ne 0 } $interval $timeout $delay $reportingInterval).Click("true")
-
 $interval = [System.TimeSpan]::FromMilliseconds(5000)
 # 120min timeout
 $timeout = [System.TimeSpan]::FromMilliseconds(1000 * 60 * 120)
