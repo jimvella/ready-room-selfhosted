@@ -138,6 +138,7 @@ Review the parameters section of the powershell script above and update as requi
 9. Remember to Terminate the instance when it's no longer required to avoid unecessary expense.
 
 ## Notes and future work
+- WebGui is opened before the DCS server is executed. However, user may need to alt-tab to get to the browser if accessing via RDP. 
 
 - The install script could be extended to include extra services such as SRS, Tacview, Olympus, Mods, etc.
 
